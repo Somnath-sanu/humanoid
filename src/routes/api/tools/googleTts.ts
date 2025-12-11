@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs'
 
 const keyFile = JSON.parse(
   readFileSync(
-    'C:/Users/somna/Desktop/TS/soul/humanoid/humanoid_voice.json',
+    'C:/Users/somna/Downloads/humanoid_voice.json',
     'utf8',
   ),
 )
