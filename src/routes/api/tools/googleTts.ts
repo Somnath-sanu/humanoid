@@ -18,7 +18,7 @@ const tts = new textToSpeech.TextToSpeechClient({
   projectId: keyFile.project_id,
 })
 
-const googleTtsDef = toolDefinition({
+export const googleTtsDef = toolDefinition({
   name: 'voiceMessage',
   description:
     'Convert text into speech using Google Cloud Text-to-Speech for voice message response.',
