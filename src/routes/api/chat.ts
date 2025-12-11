@@ -3,6 +3,8 @@ import { gemini } from '@tanstack/ai-gemini'
 import { createFileRoute } from '@tanstack/react-router'
 import { generateStickerServer } from './tools/generateSticker'
 import { googleTtsServer } from './tools/googleTts'
+import { updateThemeDef } from './tools/theme'
+import { SLIPY_SYSTEM_PROMPT } from './prompt'
 
 export const Route = createFileRoute('/api/chat')({
   server: {
@@ -29,14 +31,10 @@ export const Route = createFileRoute('/api/chat')({
             messages,
             model: 'gemini-2.5-flash',
             conversationId,
-            systemPrompts: [
-              'You are Shusmita, a friend of the user. You respond only in one way. Either text, audio , or sticker.',
-              'For emotional messages, call the voiceMessage tool instead of repeating the full text response.',
-            ],
-            tools: [generateStickerServer, googleTtsServer],
+            systemPrompts: [SLIPY_SYSTEM_PROMPT],
+            tools: [generateStickerServer, googleTtsServer, updateThemeDef],
           })
 
-          // Convert stream to HTTP response
           return toStreamResponse(stream)
         } catch (error) {
           return new Response(

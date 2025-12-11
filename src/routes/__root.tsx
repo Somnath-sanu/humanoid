@@ -5,6 +5,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import Header from '../components/Header'
 
 import appCss from '../styles.css?url'
+import { Toaster } from '@/components/ui/sonner'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -39,6 +40,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {/* <Header /> */}
+        <Toaster />
         {children}
         {/* <TanStackDevtools
           config={{
