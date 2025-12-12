@@ -42,14 +42,12 @@ export function Chat() {
     if (input.trim() && !isLoading) {
       sendMessage(input)
       setInput('')
-      // Use setTimeout to ensure focus happens after React updates
       setTimeout(() => {
         inputRef.current?.focus()
       }, 0)
     }
   }
 
-  // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
@@ -58,16 +56,13 @@ export function Chat() {
 
   return (
     <div className="fixed inset-0 w-screen h-screen z-50 flex flex-col items-center justify-center overflow-hidden">
-      {/* Main Chat Container - Floating Glass Card */}
       <div className="relative z-10 w-full max-w-2xl h-[85vh] flex flex-col glass-panel mx-4 transition-all duration-300 shadow-lg overflow-hidden">
-        {/* Helper Header/Title & Theme Switcher */}
         <div className="p-2 border-b border-white/20 flex items-center justify-between shrink-0 backdrop-blur-md bg-white/10">
           <div className="flex items-center gap-2">
             <span className="text-xl">✨</span>
             <span className="font-semibold text-gray-800/80">Silpy</span>
           </div>
           <div className="flex gap-2 items-center">
-            {/* Theme Buttons */}
             <Button
               onClick={() => setTheme('neutral')}
               size="sm"
@@ -107,7 +102,6 @@ export function Chat() {
           </div>
         </div>
 
-        {/* Messages Area */}
         <div className="flex-1 overflow-y-auto chat-messages p-4 relative">
           {messages.length === 0 ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center opacity-80">
@@ -116,41 +110,11 @@ export function Chat() {
                 How can I help you today?
               </h2>
               <p className="text-gray-600 mb-8 max-w-md">I'm your cute Silpy</p>
-              {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md">
-                <Button
-                  onClick={() => sendMessage('Tell me a cute story!')}
-                  variant="outline"
-                  className="p-4 h-auto bg-white/60 hover:bg-white/90 rounded-xl text-left border border-white/40 shadow-sm hover:shadow-md transition-all text-sm font-medium text-gray-700 justify-start"
-                >
-                  📖 Tell me a cute story
-                </Button>
-                <Button
-                  onClick={() => sendMessage('Generate a sticker for me!')}
-                  variant="outline"
-                  className="p-4 h-auto bg-white/60 hover:bg-white/90 rounded-xl text-left border border-white/40 shadow-sm hover:shadow-md transition-all text-sm font-medium text-gray-700 justify-start"
-                >
-                  🎨 Generate a sticker
-                </Button>
-                <Button
-                  onClick={() => sendMessage('Sing a song for me!')}
-                  variant="outline"
-                  className="p-4 h-auto bg-white/60 hover:bg-white/90 rounded-xl text-left border border-white/40 shadow-sm hover:shadow-md transition-all text-sm font-medium text-gray-700 justify-start"
-                >
-                  🎵 Sing a song
-                </Button>
-                <Button
-                  onClick={() => sendMessage('Give me a mood boost!')}
-                  variant="outline"
-                  className="p-4 h-auto bg-white/60 hover:bg-white/90 rounded-xl text-left border border-white/40 shadow-sm hover:shadow-md transition-all text-sm font-medium text-gray-700 justify-start"
-                >
-                  ✨ Mood boost
-                </Button>
-              </div> */}
             </div>
           ) : (
             <div className="space-y-6 pb-4">
               {messages.map((message) => {
-                const messageHasVoiceNote = hasVoiceNote(message.parts)
+                // const messageHasVoiceNote = hasVoiceNote(message.parts)
                 return (
                   <div
                     key={message.id}
@@ -240,7 +204,6 @@ export function Chat() {
                 )
               })}
 
-              {/* Loading Indicator */}
               {isLoading && (
                 <div className="flex justify-start w-full">
                   <div className="text-3xl animate-pulse">💭</div>
@@ -252,7 +215,6 @@ export function Chat() {
           )}
         </div>
 
-        {/* Input Area */}
         <div className="p-3 backdrop-blur-md">
           <form
             onSubmit={handleSubmit}

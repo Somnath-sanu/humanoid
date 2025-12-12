@@ -26,16 +26,15 @@ export function AnimatedBackground() {
     }
   }
 
-  // Generate random floating elements only on client-side to avoid hydration errors
   useEffect(() => {
     const items: FloatingElement[] = []
-    const count = 50 // Increased count for better coverage
+    const count = 50
     const emojis = getThemeEmojis()
 
     for (let i = 0; i < count; i++) {
       items.push({
         id: i,
-        size: Math.random() * 20 + 20, // 20-50px font size
+        size: Math.random() * 20 + 20,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         animationClass: `floating-element-${(i % 6) + 1}`,
@@ -43,7 +42,7 @@ export function AnimatedBackground() {
       })
     }
     setElements(items)
-  }, [theme]) // Regenerate when theme changes
+  }, [theme])
 
   return (
     <div className="fixed inset-0 w-screen h-screen overflow-hidden pointer-events-none select-none z-0">
