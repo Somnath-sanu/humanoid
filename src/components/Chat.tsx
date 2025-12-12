@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { useChat, fetchServerSentEvents } from '@tanstack/ai-react'
-import { generateStickerDef } from '@/routes/api/tools/generateSticker'
+import { generateStickerDef } from '@/server/tools/generateSticker'
 import { googleTtsClientDef } from './tools/googleTtsClient'
-import { Loader2, Send } from 'lucide-react'
+import { Send } from 'lucide-react'
 import { useChatTheme } from '@/contexts/ChatThemeContext'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { updateThemeDef } from '@/routes/api/tools/theme'
+import { updateThemeDef } from '@/server/tools/theme'
 import { toast } from 'sonner'
 
 export function Chat() {
@@ -243,14 +243,7 @@ export function Chat() {
               {/* Loading Indicator */}
               {isLoading && (
                 <div className="flex justify-start w-full">
-                  <div className="message-bubble message-bubble-assistant rounded-tl-none py-2 px-4 shadow-sm">
-                    <div className="flex items-center gap-2 loading-indicator text-gray-500">
-                      <Loader2 className="animate-spin size-4" />
-                      <span className="text-sm font-medium">
-                        Silpy is writing...
-                      </span>
-                    </div>
-                  </div>
+                  <div className="text-3xl animate-pulse">💭</div>
                 </div>
               )}
 

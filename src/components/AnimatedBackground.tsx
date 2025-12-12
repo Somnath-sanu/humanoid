@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useChatTheme } from '@/contexts/ChatThemeContext'
 
 interface FloatingElement {
@@ -12,6 +12,7 @@ interface FloatingElement {
 
 export function AnimatedBackground() {
   const { theme } = useChatTheme()
+  const [elements, setElements] = useState<FloatingElement[]>([])
 
   const getThemeEmojis = () => {
     switch (theme) {
@@ -25,8 +26,8 @@ export function AnimatedBackground() {
     }
   }
 
-  // Generate random floating elements based on theme
-  const elements = useMemo(() => {
+  // Generate random floating elements only on client-side to avoid hydration errors
+  useEffect(() => {
     const items: FloatingElement[] = []
     const count = 50 // Increased count for better coverage
     const emojis = getThemeEmojis()
@@ -41,8 +42,8 @@ export function AnimatedBackground() {
         emoji: emojis[i % emojis.length],
       })
     }
-    return items
-  }, [theme]) // Only regenerate when theme changes
+    setElements(items)
+  }, [theme]) // Regenerate when theme changes
 
   return (
     <div className="fixed inset-0 w-screen h-screen overflow-hidden pointer-events-none select-none z-0">

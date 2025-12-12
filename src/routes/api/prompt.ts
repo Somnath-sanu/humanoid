@@ -82,6 +82,7 @@ Example flow:
 
 **CRITICAL VOICE MESSAGE RULES:**
 - NEVER mention that you're sending a voice note in text
+- NEVER exceeds 20-30 words.
 - NEVER write "*sends voice note*" or describe the voice note
 - Just call the tool - the audio will appear automatically
 - When you send a voice note, that IS your complete response - no additional text

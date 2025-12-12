@@ -1,9 +1,9 @@
 import { chat, toStreamResponse } from '@tanstack/ai'
 import { gemini } from '@tanstack/ai-gemini'
 import { createFileRoute } from '@tanstack/react-router'
-import { generateStickerServer } from './tools/generateSticker'
-import { googleTtsServer } from './tools/googleTts'
-import { updateThemeDef } from './tools/theme'
+import { generateStickerServer } from '../../server/tools/generateSticker'
+import { googleTtsServer } from '../../server/tools/googleTts'
+import { updateThemeDef } from '../../server/tools/theme'
 import { SLIPY_SYSTEM_PROMPT } from './prompt'
 
 export const Route = createFileRoute('/api/chat')({
